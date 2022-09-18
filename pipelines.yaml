@@ -3,9 +3,6 @@ name: check_logs
 trigger:
 - none
 
-variables:
-  NPAPWD: $(npa_pwd)  
-
 jobs:
 
 - job: build
@@ -39,12 +36,13 @@ jobs:
   # - task: PowerShell@2
   # call for 1000 pipeline runs and save response in file
   - script: |
-    AUTH=$(echo -ne "$(npa_martamazurkiewicz):$NPAPWD" | base64 --wrap 0)
-    curl \
-      --header "Content-Type: application/json" \
-      --header 'Authorization: Basic $AUTH' \
-      --request GET \
-      'https://dev.azure.com/martamazurkiewicz/test/_apis/pipelines/1/runs?api-version=6.0-preview.1'
-      -o runs.response 
-  env:
-    NPAPWD: $(pwd)
+      AUTH=$(echo -ne "$NPAUSER:$NPAPWD" | base64 --wrap 0)
+      curl \
+        --header "Content-Type: application/json" \
+        --header 'Authorization: Basic $AUTH' \
+        --request GET \
+        'https://dev.azure.com/martamazurkiewicz/test/_apis/pipelines/1/runs?api-version=6.0-preview.1'
+        -o runs.response 
+    env:
+      NPAPWD: $(npa_pwd)
+      NPAUSER: $(npa_user)
