@@ -46,3 +46,6 @@ jobs:
     env:
       NPAPWD: $(npa_pwd)
       NPAUSER: $(npa_user)
+  -task:
+    displayName: 'Check tail of pipeline runs'
+    script: tail -10 runs.response
