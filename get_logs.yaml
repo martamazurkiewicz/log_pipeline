@@ -4,7 +4,7 @@ parameters:
   default: []
 
 steps:
-- ${{ each id in parameters.ids }}:
-  - scripts: |
-      echo ${{ id }}
-      curl --location --request GET https://dev.azure.com/marta-mazurkiewicz/test/_apis/pipelines/1/runs/${{ id }}/logs/ -o logs.${{ id }}
+- ${{ each run in parameters.ids }}:
+  - script: |
+      echo ${{ run }}
+      curl --location --request GET https://dev.azure.com/marta-mazurkiewicz/test/_apis/pipelines/1/runs/${{ run }}/logs/ -o logs.${{ run }}
