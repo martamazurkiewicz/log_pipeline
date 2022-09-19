@@ -45,8 +45,8 @@ jobs:
   - script: tail -10 runs.response
   # get all ids between 18.09-18.09
   - script: |
-    OUTPUT=($(python get_ids.py | tr -d '[],'))
-    echo "##vso[task.setvariable variable=ids]OUTPUT[@]"
+      OUTPUT=($(python get_ids.py | tr -d '[],'))
+      echo "##vso[task.setvariable variable=ids]OUTPUT[@]"
   - template: get_logs.yaml
     parameters:
       ids: $(ids)
