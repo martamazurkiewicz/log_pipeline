@@ -49,4 +49,4 @@ jobs:
       echo "##vso[task.setvariable variable=ids]OUTPUT[@]"
   - template: get_logs.yaml
     parameters:
-      ids: $(ids)
+        ids: $(ids)
